@@ -8,12 +8,12 @@ const Register = () => {
     return (
         <div className="join-container">
             <header className="join-header">
-                <h1><i className="fas fa-smile"></i> ChatCord</h1>
+                <h1><i className="fas fa-smile"></i>Chat Room</h1>
             </header>
             <main className="join-main">
                 <form action="chat.html">
                     <div className="form-control">
-                        <label for="username">Username</label>
+                        <label htmlFor="username">Username</label>
                         <input
                             type="text"
                             name="name"
@@ -24,7 +24,7 @@ const Register = () => {
                         />
                     </div>
                     <div className="form-control">
-                        <label for="username">Room</label>
+                        <label htmlFor="username">Room</label>
                         <input
                             type="text"
                             name="room"

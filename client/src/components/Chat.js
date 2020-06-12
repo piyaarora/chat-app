@@ -1,82 +1,97 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
-import io from 'socket.io-client'
+import io from "socket.io-client";
 
+import ScrollToBottom from 'react-scroll-to-bottom';
+import Message from './Message';
+import Input from './Input';
 
+let socket;
 
 const Chat = ({ location }) => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
+    const [users, setUsers] = useState('');
+    const [message, setMessage] = useState('');
+    const [messages, setMessages] = useState([]);
+
     const ENDPOINT = 'localhost:5000'
 
     useEffect(() => {
-        const { name, room } = queryString.parse(location.search)
-        let socket = io(ENDPOINT)
+        const { name, room } = queryString.parse(location.search);
 
-        setName(name);
+        socket = io(ENDPOINT);
+
         setRoom(room);
-        console.log(socket)
-        socket.emit('join', { name, room }, ({ error }) => {
-            console.log(error)
+        setName(name)
+
+        socket.emit('join', { name, room }, (error) => {
+            if (error) {
+                alert(error);
+            }
+        });
+    }, [ENDPOINT, location.search]);
+
+    useEffect(() => {
+        socket.on('message', message => {
+            setMessages(messages => [...messages, message]);
         });
 
-        return () => {
-            socket.emit('disconnect');
+        socket.on("roomData", ({ users }) => {
+            setUsers(users);
+        });
+    }, []);
 
-            socket.off();
+    const sendMessage = (event) => {
+        event.preventDefault();
+
+        if (message) {
+            socket.emit('sendMessage', message, () => setMessage(''));
         }
-        // const data = queryString.parse(location.search)
-        // console.log(location.search);
-        // console.log(name, room);
-    }, [ENDPOINT, location.search])
+    }
 
     return (
         <div className="chat-container">
             <header className="chat-header">
-                <h1><i className="fas fa-smile"></i> ChatCord</h1>
-                <a href="index.html" className="btn">Leave Room</a>
+                <h1><i className="fas fa-smile"></i> Chat App</h1>
+                <a href="/" className="btn">Leave Room</a>
             </header>
             <main className="chat-main">
                 <div className="chat-sidebar">
                     <h3><i className="fas fa-comments"></i> Room Name:</h3>
-                    <h2 id="room-name">JavaScript</h2>
+                    <h2 id="room-name">{room}</h2>
                     <h3><i className="fas fa-users"></i> Users</h3>
                     <ul id="users">
-                        <li>Brad</li>
-                        <li>John</li>
-                        <li>Mary</li>
-                        <li>Paul</li>
-                        <li>Mike</li>
+                        {
+                            users ? (<div>
+                                {users.map(({ name }) => (
+                                    <li key={name}>
+                                        {name}
+                                    </li>
+                                ))}
+
+                            </div>)
+                                :
+                                null
+                        }
+
                     </ul>
                 </div>
                 <div className="chat-messages">
-                    <div className="message">
-                        <p className="meta">Brad <span>9:12pm</span></p>
-                        <p className="text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-                            repudiandae.
-						</p>
-                    </div>
-                    <div className="message">
-                        <p className="meta">Mary <span>9:15pm</span></p>
-                        <p className="text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-                            repudiandae.
-						</p>
-                    </div>
+
+                    <ScrollToBottom>
+                        {messages.map((message, i) => <div key={i} className="message">
+                            <Message message={message} name={name} />
+                        </div>
+                        )}
+
+                    </ScrollToBottom>
                 </div>
+
             </main>
             <div className="chat-form-container">
-                <form id="chat-form">
-                    <input
-                        id="msg"
-                        type="text"
-                        placeholder="Enter Message"
-                        required
-                        autocomplete="off"
-                    />
-                    <button className="btn"><i className="fas fa-paper-plane"></i> Send</button>
-                </form>
+                <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+
             </div>
         </div>
 
