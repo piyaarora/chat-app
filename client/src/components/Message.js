@@ -1,4 +1,8 @@
 import React, { Fragment } from 'react'
+// import moment from 'moment'
+import moment from 'react-moment'
+
+let time = new Date().toLocaleString();
 
 const Message = ({ message: { text, user }, name }) => {
     let isSentByCurrentUser = false;
@@ -11,20 +15,25 @@ const Message = ({ message: { text, user }, name }) => {
     return (
         isSentByCurrentUser ?
             (
-                <Fragment>
-                    <p className="meta">{trimmedName} <span>9:12pm</span></p>
-                    <p className="text">
-                        {text}
-                    </p>
-                </Fragment>
+                <div className="chat-message-container justify-end">
+                    <p className="sentText pr-10">{trimmedName} <span>{time}</span></p>
+                    <div className="messageBox backgroundBlue">
+                        <p className="messageText colorWhite">
+                            {text}
+                        </p>
+                    </div>
+                </div>
             ) :
             (
-                <>
-                    <p className="meta">{user} <span>9:12pm</span></p>
-                    <p className="text">
-                        {text}
+                <div className="chat-message-container justify-start">
+                    <div className="messageBox backgroundLight">
+                        <p className="messageText colorDark">{text}</p> <span>{time} </span>
+                    </div>
+                    <p className="sentText pl-10">
+                        {user}
                     </p>
-                </>
+
+                </div>
             )
     )
 

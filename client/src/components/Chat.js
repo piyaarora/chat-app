@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import queryString from 'query-string';
 import io from "socket.io-client";
 
@@ -77,10 +77,10 @@ const Chat = ({ location }) => {
 
                     </ul>
                 </div>
-                <div className="chat-messages">
+                <div>
 
-                    <ScrollToBottom>
-                        {messages.map((message, i) => <div key={i} className="message">
+                    <ScrollToBottom className="chat-messages">
+                        {messages.map((message, i) => <div key={i}>
                             <Message message={message} name={name} />
                         </div>
                         )}

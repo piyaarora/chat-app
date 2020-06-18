@@ -3,7 +3,7 @@
 :root {
 	--dark-color-a: #667aff;
 	--dark-color-b: #7386ff;
-	--light-color: #e6e9ff;
+	--light-color: #f5f5f7;
 	--success-color: #5cb85c;
 	--error-color: #d9534f;
 }
@@ -17,7 +17,7 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
-	background: var(--light-color);
+	background-image: url('../images/chatbackground.jpg');
 	margin: 20px;
 }
 
@@ -31,10 +31,10 @@ a {
 
 .btn {
 	cursor: pointer;
-	padding: 5px 15px;
+	padding: 5px 10px;
 	background: var(--light-color);
 	color: var(--dark-color-a);
-	border: 0;
+	border-radius: 10;
 	font-size: 17px;
 }
 
@@ -43,12 +43,19 @@ a {
 .chat-container {
 	max-width: 1100px;
 	background: #fff;
-	margin: 30px auto;
+	margin: 80px auto;
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid transparent;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8), 0 6px 6px rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	
 }
 
 .chat-header {
-	background: var(--dark-color-a);
+	background: rgba(9,9,121,.4);
+	background: linear-gradient(172deg, rgba(9,9,121,1) 0%, rgba(121,152,211,1) 61%, rgba(0,212,255,1) 100%);
 	color: #fff;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
@@ -72,7 +79,7 @@ a {
 
 .chat-sidebar h2 {
 	font-size: 20px;
-	background: rgba(0, 0, 0, 0.1);
+	background: #fff;
 	padding: 10px;
 	margin-bottom: 20px;
 }
@@ -83,36 +90,145 @@ a {
 
 .chat-sidebar ul li {
 	padding: 10px 0;
+	list-style-type: disc;
 }
 
 .chat-messages {
 	padding: 30px;
-	max-height: 500px;
+	margin :20px;
+	/* max-height: 400px; */
 	overflow-y: scroll;
+	/* margin-bottom: 7px; */
+	overflow: auto;
+	flex:auto;
+	/* background:#000; */
+	/* position: relati */
+	/* display:flex; */
+
 }
 
-.chat-messages .message {
+.chat-message-container{
+	display: flex;
+	justify-content: flex-end;
+	padding:0 5%;
+	margin-top: 3px;
+}
+
+.justify-end{
+	justify-content: flex-end;
+}
+
+.justify-start{
+justify-content: flex-start;
+}
+
+.pl-10 {
+	padding-left: 10px;
+  }
+  
+  .pr-10 {
+	padding-right: 10px;
+  }
+  .sentText {
+	display: flex;
+	align-items: center;
+	font-family: Helvetica;
+	color: #828282;
+	letter-spacing: 0.3px;
+  }
+  .messageBox {
+	background: #F3F3F3;
+	border-radius: 20px;
+	padding: 5px 20px;
+	color: white;
+	display: inline-block;
+	max-width: 80%;
+  }
+	
+.backgroundBlue {
+	background: #2979FF;
+  }
+  .colorWhite {
+	color: white;
+  }
+  
+.colorDark {
+	color: #353535;
+  }
+  .messageText {
+	width: 100%;
+	letter-spacing: 0;
+	float: left;
+	font-size: 1.1em;
+	word-wrap: break-word;
+  }
+  .backgroundLight {
+	background: #F3F3F3;
+  }
+  
+/* .chat-messages {
+	background: #000;
+	display:block;
+	width:200px;
+	height:200px;
+} */
+/* 
+
+.chat-messages .message2 {
 	padding: 10px;
 	margin-bottom: 15px;
-	background-color: var(--light-color);
+	/* position: relative; */
+	/* flex-direction: column */
+	/* background-color: var(--light-color);
 	border-radius: 5px;
-}
+	width:500px;
+} */
+/* 
+.chat-messages .message2:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: -20px;
+  top: 0px; */
+	/* bottom: auto; */
+	/* border: 22px solid; */
+	/* border-color: rgb(236, 236, 20) transparent transparent transparent; */
 
-.chat-messages .message .meta {
+/* } */
+
+
+.justifyStart {
+	justify-content: flex-start;
+  }
+  
+  .justifyEnd {
+	justify-content: flex-end;
+  }
+  
+.messages .messsage-conatiner .speech-bubble1 .meta,
+.messages .messsage-conatiner .speech-bubble2 .meta
+ {
 	font-size: 15px;
 	font-weight: bold;
 	color: var(--dark-color-b);
 	opacity: 0.7;
-	margin-bottom: 7px;
+	padding:10px;
+	z-index:11111111111111111;
 }
 
-.chat-messages .message .meta span {
+.chat-messages .speech-bubble1 .meta span,
+.chat-messages .speech-bubble2 .meta span {
 	color: #777;
+	/* padding:10px; */
 }
 
 .chat-form-container {
 	padding: 20px 30px;
 	background-color: var(--dark-color-a);
+	background: rgba(9,9,121,.4);
+	background: linear-gradient(350deg, rgba(9,9,121,1) 0%, rgba(121,152,211,1) 61%, rgba(0,212,255,1) 100%);
 }
 
 .chat-form-container form {
@@ -129,21 +245,28 @@ a {
 /* Join Page */
 .join-container {
 	max-width: 500px;
-	margin: 80px auto;
+	margin: 150px auto;
+	background:transparent;
+	/* border: 2px solid white; */
+	border: 1px solid transparent;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8), 0 6px 6px rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	background: rgba(9,9,121,.4);
+	background: linear-gradient(172deg, rgba(9,9,121,1) 0%, rgba(121,152,211,1) 61%, rgba(0,212,255,1) 100%);
 	color: #fff;
 }
 
 .join-header {
 	text-align: center;
 	padding: 20px;
-	background: var(--dark-color-a);
+	/* background: var(--dark-color-a); */
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
 
 .join-main {
 	padding: 30px 40px;
-	background: var(--dark-color-b);
+	/* background: var(--dark-color-b); */
 }
 
 .join-main p {
@@ -177,13 +300,79 @@ a {
 	margin-top: 20px;
 	width: 100%;
 }
+/* 
+.tri-right.border.left-top:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+    left: -40px;
+	right: auto;
+    top: -8px;
+	bottom: auto;
+	border: 32px solid;
+	border-color: #666 transparent transparent transparent;
+} */
 
 @media (max-width: 700px) {
 	.chat-main {
 		display: block;
 	}
 
+	.align-left{
+		margin:0px;
+	}
 	.chat-sidebar {
 		display: none;
 	}
+}
+
+.speech-bubble1 {
+	/* position: relative; */
+	background: #080;
+	width:30em;
+	border-radius:  0 .3em .3rem .3rem;
+	z-index: 11111;
+	padding:10px;
+	margin-bottom:30px
+}
+
+.speech-bubble1:after {
+	content: '';
+	position: absolute;
+	/* left: -10px; */
+	top: 0%;
+	width: 20px;
+	height: 0;
+	border: 17px solid transparent;
+	border-right-color: #75df55;
+	border-left: 0;
+	border-top: 0;
+	margin-top: 0px;
+	margin-left: -37px;
+	z-index: 11111111
+	;
+}
+.speech-bubble2 {
+	position: relative;
+	width:30em;
+	float:right;margin-right: 1.2rem;
+	background: #00aabb;
+	border-radius: .3em 0 .3em .3em;
+	margin-bottom: 20px;
+}
+
+.speech-bubble2:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 0%;
+	width: 0;
+	height: 0;
+	border: 17px solid transparent;
+	border-left-color: #00aabb;
+	border-right: 0;
+	border-top: 0;
+	margin-top: 0px;
+	margin-right: -17px;
 }
