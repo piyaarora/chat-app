@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import moment from 'moment'
 // import moment from 'react-moment'
 
-let date = new Date()
+// let date = new Date()
 // let time = zero(time.getHours()) + ':' + zero(time.getMinutes());
 // 
 let time = moment().format('h:mm a')
