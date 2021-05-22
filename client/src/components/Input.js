@@ -6,7 +6,7 @@ export const Input = ({ setMessage, sendMessage, message }) => {
             <input
                 type="text"
                 id="msg"
-                className="input"
+                // className="input"
                 value={message}
                 onChange={({ target: { value } }) => setMessage(value)}
                 onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
@@ -14,7 +14,10 @@ export const Input = ({ setMessage, sendMessage, message }) => {
                 required
 
             />
-            <button className="btn" onClick={event => sendMessage(event)}><i className="fas fa-paper-plane"></i> Send</button>
+            <i className="fa fa-paperclip attachment" aria-hidden="true" />
+            <button className="submit btn" onClick={event => sendMessage(event)}><i className="fa fa-paper-plane" aria-hidden="true" /></button>
+
+            {/* <button className="btn" ><i className="fas fa-paper-plane"></i> Send</button> */}
         </form>
     )
 }

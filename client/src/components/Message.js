@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 // import moment from 'react-moment'
+import User from '../images/user.png'
 
 // let date = new Date()
 // let time = zero(time.getHours()) + ':' + zero(time.getMinutes());
@@ -15,29 +16,48 @@ const Message = ({ message: { text, user }, name }) => {
         isSentByCurrentUser = true;
     }
     return (
-        isSentByCurrentUser ?
-            (
-                <div className="chat-message-container justify-end">
-                    <p className="sentText pr-10"> {trimmedName} </p>
-                    <div className="messageBox backgroundBlue">
-                        <p className="messageText colorWhite">
-                            {text}
-                        </p>
-                        <span className="colorlightest"> {time}</span>
-                    </div>
-                </div>
-            ) :
-            (
-                <div className="chat-message-container justify-start">
-                    <div className="messageBox backgroundLight">
-                        <p className="messageText colorDark">{text}</p> <span className="colorlightDark"> {time} </span>
-                    </div>
-                    <p className="sentText pl-10">
-                        {user}
-                    </p>
+        <ul>
+            {
+                isSentByCurrentUser ? (
+                    <li className="replies">
+                        <div style={{ fontSize: '12px', padding: '5px', textAlign: 'end' }}>{trimmedName}</div>
 
-                </div>
-            )
+                        <img src={User} alt="" />
+                        <p>{text}</p>
+                    </li>
+                ) :
+                    <li className="sent">
+                        <div style={{ fontSize: '12px', padding: '5px' }}>{user}</div>
+
+                        <img src={User} alt="" />
+                        <p>{text}</p>
+                    </li>
+
+            }
+        </ul>
+        // isSentByCurrentUser ?
+        // (
+        //     <div className="chat-message-container justify-end">
+        //         <p className="sentText pr-10"> {trimmedName} </p>
+        //         <div className="messageBox backgroundBlue">
+        //             <p className="messageText colorWhite">
+        //                 {text}
+        //             </p>
+        //             <span className="colorlightest"> {time}</span>
+        //         </div>
+        //     </div>
+        // ) :
+        // (
+        //     <div className="chat-message-container justify-start">
+        //         <div className="messageBox backgroundLight">
+        //             <p className="messageText colorDark">{text}</p> <span className="colorlightDark"> {time} </span>
+        //         </div>
+        //         <p className="sentText pl-10">
+        //             {user}
+        //         </p>
+
+        //     </div>
+        // )
     )
 
 }
