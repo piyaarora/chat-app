@@ -75,11 +75,9 @@ const Chat = ({ location }) => {
 
                                             <li className="contact" key={name}>
                                                 <div className="wrap">
-                                                    {/* <span className="contact-status online" /> */}
                                                     <img src={avatar} alt="" />
                                                     <div className="meta">
                                                         <p className="name">{name}</p>
-                                                        {/* <p className="preview">You just got LITT up, Mike.</p> */}
                                                     </div>
                                                 </div>
                                             </li>
@@ -94,7 +92,6 @@ const Chat = ({ location }) => {
                 </div>
                 <div className="content">
                     <div className="contact-profile">
-                        {/* <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /> */}
                         <p><strong>Gupshup: </strong> {room}</p>
                         <Link to="/" className="btn">
                             <div className="social-media">
@@ -115,59 +112,11 @@ const Chat = ({ location }) => {
                     <div className="message-input">
                         <div className="wrap">
                             <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
-                            {/* <input type="text" placeholder="Write your message..." /> */}
                         </div>
                     </div>
                 </div>
             </div >
-
-
         </div>
-
-        // <div className="chat-container">
-        //     <header className="chat-header">
-        //         <h1><i className="fas fa-smile"></i> Chat App</h1>
-        //         <a href="/" className="btn">Leave Room</a>
-        //     </header>
-        //     <main className="chat-main">
-        //         <div className="chat-sidebar">
-        //             <h3><i className="fas fa-comments"></i> Room Name:</h3>
-        //             <h2 id="room-name">{room}</h2>
-        //             <h3><i className="fas fa-users"></i> Users</h3>
-        //             <ul id="users">
-        //                 {
-        //                     users ? (<div>
-        //                         {users.map(({ name }) => (
-        //                             <li key={name}>
-        //                                 {name}
-        //                             </li>
-        //                         ))}
-
-        //                     </div>)
-        //                         :
-        //                         null
-        //                 }
-
-        //             </ul>
-        //         </div>
-        //         <div>
-
-        //             <ScrollToBottom className="chat-messages">
-        //                 {messages.map((message, i) => <div key={i}>
-        //                     <Message message={message} name={name} />
-        //                 </div>
-        //                 )}
-
-        //             </ScrollToBottom>
-        //         </div>
-
-        //     </main>
-        //     <div className="chat-form-container">
-        //         <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
-
-        //     </div>
-        // </div>
-
     )
 }
 export default Chat

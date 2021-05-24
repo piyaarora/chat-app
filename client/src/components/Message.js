@@ -35,29 +35,7 @@ const Message = ({ message: { text, user }, name }) => {
 
             }
         </ul>
-        // isSentByCurrentUser ?
-        // (
-        //     <div className="chat-message-container justify-end">
-        //         <p className="sentText pr-10"> {trimmedName} </p>
-        //         <div className="messageBox backgroundBlue">
-        //             <p className="messageText colorWhite">
-        //                 {text}
-        //             </p>
-        //             <span className="colorlightest"> {time}</span>
-        //         </div>
-        //     </div>
-        // ) :
-        // (
-        //     <div className="chat-message-container justify-start">
-        //         <div className="messageBox backgroundLight">
-        //             <p className="messageText colorDark">{text}</p> <span className="colorlightDark"> {time} </span>
-        //         </div>
-        //         <p className="sentText pl-10">
-        //             {user}
-        //         </p>
 
-        //     </div>
-        // )
     )
 
 }
